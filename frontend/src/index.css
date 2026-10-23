@@ -1,0 +1,228 @@
+@import "tailwindcss";
+
+@theme {
+  --color-canvas: #080B10;
+  --color-panel-primary: #0E131B;
+  --color-panel-secondary: #121923;
+  --color-panel-elevated: #171F2B;
+  
+  --color-accent-cyan: #00E5FF;
+  --color-accent-orange: #FF8A3D;
+  
+  --color-sev-critical: #FF4757;
+  --color-sev-high: #FF8A3D;
+  --color-sev-medium: #F5C451;
+  --color-sev-low: #4DA3FF;
+  --color-sev-info: #00E5FF;
+
+  --color-status-open: #FF4757;
+  --color-status-investigating: #FF8A3D;
+  --color-status-acknowledged: #F5C451;
+  --color-status-resolved: #10B981;
+  --color-status-fp: #64748B;
+  --color-status-closed: #475569;
+
+  --color-border-subtle: #1E293B;
+  --color-border-prominent: #334155;
+  --color-border-accent: rgba(0, 229, 255, 0.3);
+}
+
+:root {
+  color-scheme: dark;
+  background-color: #080B10;
+  color: #F1F5F9;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom Tactical Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #080B10;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1E293B;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #334155;
+}
+
+/* Accessible focus ring */
+:focus-visible {
+  outline: 2px solid #00E5FF;
+  outline-offset: 2px;
+}
+
+/* Tabular numerals for telemetry and metrics */
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Radar & Grid Background */
+.bg-radar-grid {
+  background-size: 24px 24px;
+  background-image: 
+    linear-gradient(to right, rgba(30, 41, 59, 0.3) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(30, 41, 59, 0.3) 1px, transparent 1px);
+}
+
+/* --- MOTION DESIGN SYSTEM (PHASE 4) --- */
+
+@keyframes flowDash {
+  from {
+    stroke-dashoffset: 40;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes spinVerySlow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pingSlow {
+  0% {
+    transform: scale(0.95);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.3;
+  }
+  100% {
+    transform: scale(0.95);
+    opacity: 0.8;
+  }
+}
+
+.animate-flow-dash {
+  animation: flowDash 3s linear infinite;
+}
+
+.animate-flow-dash-fast {
+  animation: flowDash 1.8s linear infinite;
+}
+
+.animate-spin-very-slow {
+  transform-origin: 320px 200px;
+  animation: spinVerySlow 40s linear infinite;
+}
+
+.animate-ping-slow {
+  transform-origin: 520px 110px;
+  animation: pingSlow 2.5s ease-in-out infinite;
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes ticker {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-ticker {
+  display: flex;
+  width: max-content;
+  animation: ticker 40s linear infinite;
+}
+
+.animate-ticker:hover {
+  animation-play-state: paused;
+}
+
+@keyframes radarSweep {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-radar-sweep {
+  animation: radarSweep 5s linear infinite;
+  transform-origin: center center;
+}
+
+@keyframes scanline {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100vh);
+  }
+}
+
+.animate-scanline {
+  animation: scanline 10s ease-in-out infinite;
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    opacity: 0.35;
+    filter: drop-shadow(0 0 10px rgba(0, 229, 255, 0.2));
+  }
+  50% {
+    opacity: 0.85;
+    filter: drop-shadow(0 0 25px rgba(0, 229, 255, 0.6));
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 4s ease-in-out infinite;
+}
+
+/* --- ACCESSIBILITY: REDUCED MOTION (PHASE 5) --- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .animate-flow-dash,
+  .animate-flow-dash-fast,
+  .animate-spin-very-slow,
+  .animate-ping-slow,
+  .animate-fade-in-up,
+  .animate-ticker,
+  .animate-radar-sweep,
+  .animate-scanline,
+  .animate-pulse-glow {
+    animation: none !important;
+  }
+}
+
