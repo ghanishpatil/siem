@@ -29,6 +29,10 @@ class Settings(BaseSettings):
     app_version: str = "0.1.0"
     environment: str = "development"
 
+    # Server
+    host: str = "127.0.0.1"
+    port: int = 8000
+
     # Persistence. SQLite ships with Python; the DB file stays local.
     database_url: str = "sqlite:///./sentinelx.db"
 
@@ -38,6 +42,8 @@ class Settings(BaseSettings):
     cors_origins: Annotated[list[str], NoDecode] = [
         "http://localhost:5173",
         "http://127.0.0.1:5173",
+        "http://localhost:3000",
+        "http://127.0.0.1:3000",
     ]
 
     # ---- Ingestion limits (bounded to protect memory and the database) ----
